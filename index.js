@@ -1,7 +1,9 @@
 const express = require ('express')
-const port = 3000
+
 const path = require ('path')
 const app = express ()
+
+require('dotenv').config()
 
 app.use (express.static('./public'))
 app.get('/teste',(req, res) =>{
@@ -16,6 +18,6 @@ app.use ((req, res, next) =>{
     res.status(404).send("Rota Não Encontrada")
 })
 
-app.listen (port, () => {
-    console.log (`App rodando na porta ${port}`)
+app.listen (process.env.PORT, () => {
+    console.log (`App rodando na porta ${process.env.PORT}`)
 })
