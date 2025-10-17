@@ -51,7 +51,21 @@ module.exports = (sequelize, DataTypes) => {
     
   }, {
     sequelize,
-    modelName: 'Users',
+    modelName: 'User',
+    tableName: 'users',
+
+    hooks:{
+      beforeCreate: async (user,options) =>{
+        const salt = await bcrypt.genSalt(10);
+        user.senha = await bcrypt.hash(user.senha, salt);
+      },
+      beforeUpdate: async (user,options) =>{
+        if(user.changed('senha')){
+          const salt = await bcrypt.genSalt(10);
+          user.senha = await bcrypt.hash(user.senha, salt);
+        }
+      }
+    }
   });
   return Users;
 };
