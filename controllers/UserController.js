@@ -17,7 +17,7 @@ module.exports = {
             }
             const user = await User.create ({nome, cpf, email, senha, tipo_usuario})
             return res.status(201).json(user)
-        }catch{
+        }catch(error){
             return res.status(500).json({ 
                 error: 'Erro ao criar usuário', error: error.message })
         }
@@ -29,7 +29,7 @@ module.exports = {
                 attributes: { exclude: ['senha'] }
             })
             return res.json(users)
-    }catch{
+    }catch(error){
             return res.status(500).json({ 
                 error: 'Erro ao listar usuários', error: error.message })
         }
@@ -42,7 +42,7 @@ module.exports = {
                 attributes: { exclude: ['senha'] }
             })
             return res.json(user)
-    }catch{
+    }catch(error){
             return res.status(500).json({ 
                 error: 'Erro ao listar usuários', error: error.message })
         }
@@ -65,7 +65,7 @@ module.exports = {
           
             await user.update ({nome, cpf, email, senha, tipo_usuario})
             return res.status(201).json(user)
-        }catch{
+        }catch(error){
             return res.status(500).json({ 
                 error: 'Erro ao atualizar usuário', error: error.message })
         }
@@ -80,7 +80,7 @@ module.exports = {
             }
             await user.destroy()
             return res.status(204).send()
-        }catch{
+        }catch(error){
             return res.status(500).json({
                 error: 'Erro ao deletar usuário', error: error.message })
         }
