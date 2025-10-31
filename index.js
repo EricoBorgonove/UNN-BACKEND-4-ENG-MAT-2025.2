@@ -1,9 +1,11 @@
-import cors from "cors";
+require('dotenv').config()
+
+const cors = require('cors');
 const express = require ('express')
 const path = require ('path')
 const app = express ()
 const userRoutes = require('./routes/usersRoutes');
-require('dotenv').config()
+
 
 app.use (cors());
 // habilitar o cors para dominios específicos
